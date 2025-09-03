@@ -49,6 +49,36 @@ function InputRow({ ref, icon, id, text, placeholder, setValue, submit, back }: 
   )
 }
 
+function useTimer(): [string, { start: () => void, stop: () => void }] {
+  const [time, setTime] = useState(0);
+  const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
+
+  const [timeStr, setTimeStr] = useState('');
+
+  useEffect(() => {
+    console.log('fmt')
+    const min = String(Math.floor(time / 60)).padStart(2, '0');
+    const sec = String(time % 60).padStart(2, '0');
+    setTimeStr(`${min}:${sec}`);
+  }, [time]);
+
+  const start = () => {
+    const id = setInterval(() => {
+      setTime(time => time + 1);
+    }, 1000);
+    setIntervalId(id);
+  };
+  const stop = () => {
+    if (intervalId) {
+      clearInterval(intervalId);
+      setIntervalId(null);
+      setTime(0);
+    }
+  };
+
+  return [timeStr, { start, stop }];
+}
+
 function Recorder({ audioInputDevice, setResult }: {
   audioInputDevice: MediaDeviceInfo | null,
   setResult: React.Dispatch<React.SetStateAction<Result | null>>
@@ -56,6 +86,7 @@ function Recorder({ audioInputDevice, setResult }: {
   const [recorder, setRecorder] = useState<MediaRecorder | null>(null);
   const [recording, setRecording] = useState(false);
   const chunks = useRef<BlobPart[]>([]);
+  const [time, timer] = useTimer();
 
   const setupRecorder = useCallback(async () => {
     if (!audioInputDevice) {
@@ -75,13 +106,14 @@ function Recorder({ audioInputDevice, setResult }: {
     recorder?.stop();
     setRecording(false);
     setupRecorder();
+    timer.stop();
   }
 
   return (
     <div className={styles.startButtonContainer}>
       <Button
         className={styles.green}
-        text='시작'
+        text={recording ? time : '시작'}
         onClick={() => {
           if (!recorder) {
             alert('오디오 입력 설정을 다시 확인해주세요.');
@@ -89,6 +121,7 @@ function Recorder({ audioInputDevice, setResult }: {
             setRecording(true);
             setResult(null);
             recorder.start();
+            timer.start();
             setTimeout(stopRecording, 1000 * 60 * 20);
           }
         }}
@@ -116,7 +149,6 @@ function Recorder({ audioInputDevice, setResult }: {
     </div>
   )
 }
-
 
 export default function Main() {
   const setAuth = useSetAtom(authAtom);
