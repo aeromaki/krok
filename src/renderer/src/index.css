@@ -1,0 +1,44 @@
+html {
+    --highlight: #62de2d;
+}
+
+html,
+body,
+#root {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000000;
+
+    overflow: hidden;
+}
+
+button {
+    background-color: var(--color);
+    border: 1px solid color-mix(in srgb, var(--color) 90%, #000000 10%);
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: color-mix(in srgb, var(--color) 97%, #000000 3%);
+}
+
+button:active {
+    cursor: pointer;
+    background-color: color-mix(in srgb, var(--color) 94%, #000000 6%);
+}
+
+button:disabled {
+    cursor: default;
+    background-color: color-mix(in srgb, var(--color) 80%, #000000 20%);
+}
+
+input:focus {
+    outline-color: var(--highlight);
+}
+
+input::placeholder {
+    color: #aaaaaa;
+}

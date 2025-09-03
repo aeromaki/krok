@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>노래방 결과</title>
+    <style>
+        html,
+        body,
+        #root {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #000000;
+
+            overflow: hidden;
+        }
+
+        html,
+        body {
+            background-color: transparent !important;
+        }
+
+        button {
+            background-color: var(--color);
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: color-mix(in srgb, var(--color) 97%, #000000 3%);
+        }
+
+        button:active {
+            cursor: pointer;
+            background-color: color-mix(in srgb, var(--color) 94%, #000000 6%);
+        }
+
+        button:disabled {
+            cursor: default;
+            background-color: color-mix(in srgb, var(--color) 91%, #000000 9%);
+        }
+
+        input:focus {
+            outline-color: #0000ff;
+        }
+
+        .resultContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            min-height: 500px;
+            border: 1px solid #aaaaaa;
+            border-radius: 10px;
+            background-color: #fafafa;
+        }
+
+        .resultContainer>h3 {
+            align-self: flex-start;
+            font-size: 19px;
+            margin: 30px 0 0 25px;
+        }
+
+        .resultContainer h4 {
+            display: inline;
+            font-size: inherit;
+            margin: 0;
+        }
+
+        .resultContainer>div,
+        .resultRowContainer {
+            flex: 1;
+            display: inherit;
+            flex-direction: inherit;
+            align-items: inherit;
+            width: 80%;
+        }
+
+        .resultRowContainer {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .resultRow+.resultRow {
+            margin-top: 17%;
+        }
+
+        .resultRow {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .resultRow>span {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            font-size: 16px;
+            margin-left: 5px;
+        }
+
+        .resultRow>span>h4 {
+            width: 80px;
+            text-align: end;
+            margin: 0 9px 0 0;
+        }
+
+        .resultRow>div {
+            ---height: 9px;
+            width: 100%;
+            height: var(---height);
+            border-radius: calc(var(---height) / 2);
+            align-self: center;
+            margin-top: 5px;
+            background-color: #dddddd;
+        }
+
+        .resultRow>div>div {
+            height: var(---height);
+            border-radius: calc(var(---height) / 2);
+            background-color: #323232;
+        }
+
+        .resultContainer>div>span {
+            margin-top: 5px;
+            font-size: 17px;
+        }
+
+        .resultContainer>div>span>span {
+            font-size: 20px;
+        }
+
+        .resultEvaluation {
+            margin-top: 30px;
+            margin-bottom: 35px;
+            width: 100%;
+            height: 50px;
+            border: 1px solid #eeeeee;
+            border-radius: 10px;
+            background-color: #ffffff;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            padding: 10px;
+            line-break: anywhere;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="resultContainer">
+        <h3>AI 분석 결과</h3>
+        <div>
+            <div class="resultRowContainer">
+                <div class="resultRow">
+                    <span>
+                        <h4>음정 정확도</h4>
+                        <span>
+                            <%= pitch %>%
+                        </span>
+                    </span>
+                    <div>
+                        <div style="width: <%= pitch %>%"></div>
+                    </div>
+                </div>
+                <div class="resultRow">
+                    <span>
+                        <h4>박자 정확도</h4>
+                        <span>
+                            <%= rhythm %>%
+                        </span>
+                    </span>
+                    <div>
+                        <div style="width: <%= rhythm %>%"></div>
+                    </div>
+                </div>
+                <div class="resultRow">
+                    <span>
+                        <h4>감정 표현</h4>
+                        <span>
+                            <%= ['매우 나쁨', '나쁨' , '보통' , '좋음' , '매우 좋음' ][emotion-1] %>
+                        </span>
+                    </span>
+                    <div>
+                        <div style="width: <%= emotion * 20 %>%"></div>
+                    </div>
+                </div>
+            </div>
+            <span>
+                <h4>종합 점수</h4> : <span>
+                    <%= '★' .repeat(Math.min(Math.floor(total / 20 + 1), 5)) %>
+                </span>
+                (<%= total %>점)
+            </span>
+            <div class="resultEvaluation">
+                <span>
+                    <h4>심사평:</h4> "<%= content %>"
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

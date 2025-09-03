@@ -1,0 +1,87 @@
+.loginRoot {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginRoot h1 {
+    font-size: 30px;
+}
+
+.loginInputContainer {
+    margin: 15px 0 60px 0;
+}
+
+.loginInput+.loginInput {
+    margin-top: 17px;
+}
+
+.loginInput>label {
+    display: flex;
+    font-size: 15px;
+    padding-left: 15px;
+    margin-bottom: 5px;
+}
+
+.loginInputInputContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    --height: 40px;
+    width: 250px;
+    height: var(--height);
+}
+
+.loginInputInputContainer>input {
+    width: 100%;
+    height: 100%;
+
+    border: 0.5px solid #eeeeee;
+    border-radius: calc(var(--height) / 2);
+
+    font-size: 15px;
+    padding: 0 15px 0 15px;
+}
+
+.loginInputInputShowButtonContainer {
+    width: 0px;
+}
+
+.loginInputInputShowButton {
+    --r: 32px;
+    width: var(--r);
+    height: var(--r);
+
+    border: none;
+
+    position: relative;
+
+    right: calc(var(--height) / 2 + var(--r) / 2 + 2px);
+    opacity: 60%;
+}
+
+.loginInputInputShowButton:hover {
+    opacity: 80%;
+}
+
+.loginInputInputShowButton:active {
+    opacity: 100%;
+}
+
+.loginInputInputShowButton>img {
+    width: 100%;
+}
+
+.loginRoot>button {
+    --color: #000000;
+    color: #ffffff;
+
+    width: 80px;
+    height: 35px;
+
+    border: none;
+    border-radius: 10px;
+}

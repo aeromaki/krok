@@ -1,0 +1,74 @@
+{
+  "name": "karaoke",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist/main/main.js",
+  "build": {
+    "npmRebuild": false,
+    "buildDependenciesFromSource": false,
+    "appId": "com.rxby.Karaoke",
+    "productName": "Karaoke",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    }
+  },
+  "scripts": {
+    "dev": "electron-vite dev -w",
+    "build": "tsc -b && electron-vite build --config electron.vite.config.ts",
+    "lint": "eslint .",
+    "preview": "electron-vite preview",
+    "dist": "npm run build && electron-builder"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.85.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "jotai": "^2.13.1",
+    "obs-websocket-js": "^5.0.6",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-modal": "^3.16.3",
+    "react-router-dom": "^7.8.1",
+    "react-select": "^5.10.2",
+    "tanstack": "^1.0.3",
+    "wavesurfer.js": "^7.10.1",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@types/ejs": "^3.1.5",
+    "@types/express": "^5.0.3",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@types/react-modal": "^3.16.3",
+    "@vitejs/plugin-react": "^5.0.0",
+    "@vitejs/plugin-react-swc": "^4.0.0",
+    "electron": "^37.3.0",
+    "electron-builder": "^25.1.8",
+    "electron-vite": "^4.0.0",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.39.1",
+    "vite": "^7.1.2",
+    "vite-plugin-static-copy": "^3.1.1"
+  },
+  "overrides": {
+    "node-gyp": "^10.2.0"
+  }
+}

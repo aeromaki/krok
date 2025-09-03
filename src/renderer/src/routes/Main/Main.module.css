@@ -1,0 +1,203 @@
+.mainRoot {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 30px;
+
+    background-color: #eeeeee;
+    border-bottom: 1px solid #cccccc;
+}
+
+header>span {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 7px;
+    font-size: 12px;
+}
+
+.userInfoSpan {
+    color: #0000ff;
+}
+
+header>div {
+    display: inherit;
+    flex-direction: inherit;
+    margin-right: 6px;
+}
+
+header button {
+    --color: #eeeeee;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+    padding: 2px 5px 2px 5px;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.audioInputSelectorContainer {
+    display: inherit;
+    flex-direction: inherit;
+    width: 350px;
+    margin-top: 30px;
+}
+
+.audioInputSelectorContainer>label {
+    font-size: 15px;
+    margin: 0 0 3px 5px;
+}
+
+.audioInputSelectorContainer>div {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.audioInputSelectorContainer>div>* {
+    height: 100%;
+    margin: 0;
+}
+
+.audioInputSelectorContainer>div>*+* {
+    margin-left: 15px;
+}
+
+.inputRowContainer {
+    margin-top: 30px;
+}
+
+.inputRow {
+    display: flex;
+    align-items: center;
+    width: 310px;
+    height: 25px;
+    font-size: 15px;
+}
+
+.inputRow>*+* {
+    margin-left: 7px;
+}
+
+.inputRow>img {
+    width: 17px;
+    height: 17px;
+}
+
+.inputRow>input {
+    flex: 1;
+    height: calc(100% - 7px);
+}
+
+.inputRow+.inputRow {
+    margin-top: 5px;
+}
+
+.startButtonContainer {
+    margin-top: 30px;
+}
+
+.startButtonContainer>*+* {
+    margin-left: 5px;
+}
+
+.startButtonContainer>button {
+    --color: #eeeeee;
+
+    width: 75px;
+    height: 30px;
+    border-radius: 9px;
+}
+
+.startButtonContainer>.green {
+    --color: var(--highlight);
+}
+
+.startButtonContainer>.darkgray {
+    --color: #434343;
+    color: #ffffff;
+}
+
+.endButtonContainer {
+    margin-top: 30px;
+}
+
+.endButtonContainer>*+* {
+    margin-left: 10px;
+}
+
+.endButtonContainer>button {
+    --color: #eeeeee;
+
+    font-size: 16px;
+    padding: 0 12px 0 12px;
+    border: 1px solid #aaaaaa;
+    border-radius: 8px;
+    height: 34px;
+}
+
+.endButtonContainer>.obsButton {
+    --color: #3a3a3a;
+    color: #fafafa;
+    border-color: #656565;
+}
+
+.modalContainer {
+    height: 100%;
+    display: inherit;
+    flex-direction: inherit;
+}
+
+.modalContainer>h3 {
+    font-size: 20px;
+    margin-bottom: 45px;
+}
+
+.modalContainer>h4 {
+    font-size: 16px;
+    margin-left: 40px;
+}
+
+.modalContainer>input {
+    width: 60%;
+    height: 18px;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+.modalButtonContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.modalButtonContainer button {
+    --color: #eeeeee;
+
+    width: 50px;
+    height: 30px;
+    border: 1px solid #cccccc;
+    border-radius: 9px;
+}
+
+.modalButtonContainer button+button {
+    margin-left: 5px;
+}
