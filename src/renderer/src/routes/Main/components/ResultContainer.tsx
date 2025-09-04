@@ -20,8 +20,8 @@ function ResultRow({ section, textValue, value }: {
 }
 
 const PITCH_TEXTS = [
-  '매우 나쁨',
-  '나쁨',
+  '아쉬움',
+  '조금 아쉬움',
   '보통',
   '좋음',
   '매우 좋음'

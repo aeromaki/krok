@@ -56,7 +56,6 @@ function useTimer(): [string, { start: () => void, stop: () => void }] {
   const [timeStr, setTimeStr] = useState('');
 
   useEffect(() => {
-    console.log('fmt')
     const min = String(Math.floor(time / 60)).padStart(2, '0');
     const sec = String(time % 60).padStart(2, '0');
     setTimeStr(`${min}:${sec}`);

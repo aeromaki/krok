@@ -12,19 +12,7 @@ export async function getAudioInputDevices(): Promise<MediaDeviceInfo[]> {
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
-const TEST = true;
 async function login(request: LoginRequest): Promise<LoginResponse> {
-  if (TEST) {
-    const token = 'test';
-    const email = request.email;
-    const userName = 'test';
-
-    store.set(authAtom, token);
-    store.set(userAtom, { email, userName });
-
-    return { token, email, userName };
-  }
-
   const res = await fetch(`${API_BASE_URL}/auth/token`, {
     method: 'POST',
     headers: {
@@ -156,8 +144,8 @@ export async function createRecorder(
 
 
 const PITCH_TEXTS = [
-  '매우 나쁨',
-  '나쁨',
+  '아쉬움',
+  '조금 아쉬움',
   '보통',
   '좋음',
   '매우 좋음'
