@@ -86,7 +86,7 @@ header button {
 .inputRow {
     display: flex;
     align-items: center;
-    width: 310px;
+    width: 330px;
     height: 25px;
     font-size: 15px;
 }
