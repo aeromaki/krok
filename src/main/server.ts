@@ -12,6 +12,7 @@ const obs = new OBSWebSocket();
 const PORT = 7777;
 
 const resultCache = { value: null };
+const sceneCache = { value: null };
 
 export default function createServer() {
   const app = express();
@@ -31,8 +32,9 @@ export default function createServer() {
 
   app.post("/connect", async (req, res) => {
     try {
-      const { address, password } = req.body;
-      console.log('/connect', address, password);
+      const { address, password, sceneName } = req.body;
+      console.log('/connect', address, password, sceneName);
+      sceneCache.value = sceneName;
       await obs.connect(`ws://${address}`, password || "");
       res.json({ success: true });
     } catch (err: any) {
@@ -53,7 +55,7 @@ export default function createServer() {
       if (!exists) {
         // 없으면 생성
         await obs.call("CreateInput", {
-          sceneName: "Scene",
+          sceneName: sceneCache.value ?? undefined,
           inputName: sourceName,
           inputKind: "browser_source",
           inputSettings: {
@@ -83,7 +85,7 @@ export default function createServer() {
       const { sourceName, visible } = req.body;
 
       await obs.call("SetSceneItemEnabled", {
-        sceneName: "Scene", // 기본 장면 이름
+        sceneName: sceneCache.value ?? undefined,
         sceneItemId: await getSceneItemId(sourceName),
         sceneItemEnabled: visible,
       });
@@ -116,7 +118,7 @@ export default function createServer() {
 
 async function getSceneItemId(sourceName: string): Promise<number> {
   const { sceneItems } = await obs.call("GetSceneItemList", {
-    sceneName: "Scene",
+    sceneName: sceneCache.value ?? undefined,
   });
   const item = sceneItems.find((i) => i.sourceName === sourceName);
   if (!item) throw new Error(`Scene item ${sourceName} not found`);

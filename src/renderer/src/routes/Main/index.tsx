@@ -163,6 +163,7 @@ export default function Main() {
   const [obsInfo, setObsInfo] = useAtom(obsAtom);
   const [obsAddress, setObsAddress] = useState('');
   const [obsPassword, setObsPassword] = useState('');
+  const [obsSceneName, setObsSceneName] = useState('');
 
   const [result, setResult] = useState<Result | null>(null);
 
@@ -194,19 +195,28 @@ export default function Main() {
             value={obsPassword}
             onChange={(e) => setObsPassword(e.target.value)}
           />
+          <h4>송출할 장면 이름</h4>
+          <input
+            id='obsSceneName'
+            type='text'
+            value={obsSceneName}
+            onChange={(e) => setObsSceneName(e.target.value)}
+          />
           <div className={styles.modalButtonContainer}>
             <div>
               <Button
                 onClick={() => {
-                  setObsInfo({ address: obsAddress, password: obsPassword });
+                  setObsInfo({ address: obsAddress, password: obsPassword, sceneName: obsSceneName });
+                  setIsOpen(false);
                 }}
                 text='저장'
-                disabled={obsAddress === obsInfo.address && obsPassword === obsInfo.password}
+                disabled={obsAddress === obsInfo.address && obsPassword === obsInfo.password && obsSceneName === obsInfo.sceneName}
               />
               <Button
                 onClick={() => {
                   setObsAddress(obsInfo.address);
                   setObsPassword(obsInfo.password);
+                  setObsSceneName(obsInfo.sceneName);
                   setIsOpen(false);
                 }}
                 text='닫기'
@@ -286,7 +296,8 @@ export default function Main() {
           onClick={() => {
             connectObs({
               address: obsInfo.address,
-              password: obsInfo.password
+              password: obsInfo.password,
+              sceneName: obsInfo.sceneName
             }).then(() => updateOrRefreshObs({
               sourceName: 'AIKaraoke',
               width: 310,

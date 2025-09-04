@@ -82,7 +82,8 @@ async function postToBack(input: string, body: any) {
 
 export async function connectObs(body: {
   address: string,
-  password: string
+  password: string,
+  sceneName: string
 }) {
   return await postToBack('/connect', body);
 }
